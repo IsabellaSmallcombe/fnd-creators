@@ -1,22 +1,52 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import CreatorCard from './CreatorCard';
 
 function App() {
+  const [creators, setCreators] = useState([]);
+
+  useEffect(() => {
+    fetch('https://api.thegraph.com/subgraphs/name/f8n/fnd', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            query: `
+                {
+                  creators(orderBy:netSalesInETH, orderDirection:desc) {
+                    id
+                    account {
+                      id
+                    }
+                    nfts {
+                      id
+                    }
+                    netRevenueInETH
+                  }
+                }
+            `
+        })
+    })
+    .then((res) => res.json())
+    .then(res => {
+      setCreators(res.data.creators);
+      console.log(res.data.creators);
+    }).catch(error => console.log(error));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="div-handle">Foundation Creators</div>
+        <header>Top 100 Highest Selling Creators</header>
+        <div className="div-creator-box">
+          {creators.map(creator => {
+            return (
+              <CreatorCard id={creator.id} netRevenue={creator.netRevenueInETH} nftsCreated={creator.nfts} />
+            )
+          })}
+        </div>
       </header>
     </div>
   );

@@ -1,0 +1,6 @@
+.creator-card {
+    display: flex;
+    flex-direction: column;
+    background: purple;
+    margin: 10px;
+}
