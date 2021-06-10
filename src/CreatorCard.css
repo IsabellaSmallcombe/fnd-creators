@@ -8,3 +8,28 @@
     box-shadow: 0px 10px 20px rgb(0 0 0 / 5%);
     padding: 10px;
 }
+
+.nft-display{
+    max-width: 100px;
+    margin: 10px;
+}
+
+/* need to fix this */
+.profile-picture{
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 999px;
+    background-size: cover;
+    background-position: center;
+}
+
+.nft-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.button-find-more{
+    border-radius: 25px;
+    border: none;
+    max-width: 200px;
+}
