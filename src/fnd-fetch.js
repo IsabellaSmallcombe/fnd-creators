@@ -13,8 +13,6 @@
 
 // fetch newest creators
 
-
-
 // Recent splits??? (maybe stretch goal)
 
 

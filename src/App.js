@@ -43,7 +43,7 @@ function App() {
         <div className="div-creator-box">
           {creators.map(creator => {
             return (
-              <CreatorCard id={creator.id} netRevenue={creator.netRevenueInETH} nftsCreated={creator.nfts} />
+              <CreatorCard id={creator.id} netRevenue={creator.netRevenueInETH} nfts={creator.nfts} />
             )
           })}
         </div>

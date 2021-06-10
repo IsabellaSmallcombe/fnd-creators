@@ -1396,6 +1396,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@nfte/react@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@nfte/react/-/react-1.0.4.tgz#b584cc6640e3d650609bf1a49bf53c569c0996c4"
+  integrity sha512-qLgAdWGvAKi2miwb8CaYszOuLoWZnGcTt3xrnLgiOQwScvNS5zcwMs4pr32VLGN5gotPBNR7b2GHbaqYjL0S8g==
+
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.4.tgz#d4b3549a5db5de2683e0c1071ab4f140904bbf69"
