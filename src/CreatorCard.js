@@ -7,7 +7,8 @@ const CreatorCard = ({ id, netRevenue, nfts}) => {
     const [nftMetadata, setNftMetadata] = useState([]);
     const [username, setUsername] = useState('');
     const [profilePicture, setProfilePicture] = useState('');
-    const [ipfsPath, setIPFSPath] = useState('');
+
+    const revenue = Math.round(parseInt(netRevenue) * 10) / 10;
 
     useEffect(() => {
             fetch('https://stark-mountain-23648.herokuapp.com/https://api.foundation.app/graphql', {
@@ -39,34 +40,30 @@ const CreatorCard = ({ id, netRevenue, nfts}) => {
     // const nfts = '';
     // example ID: "0xf74d1224931afa9cf12d06092c1eb1818d1e255c-24437"
 
-    const handleNftMetadata = () => {
-        for (var i = 0; i < nfts.length && i < 3; i++) {
-            console.log('hi');
+    // https://ipfs.foundation.app/ipfs/
 
-                const tokenId = nfts[i].id.split('-');
-                console.log(tokenId);
-                fetch('https://api.thegraph.com/subgraphs/name/f8n/fnd', {
-                    method: 'POST', 
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        query: `
-                            {
-                                nfts(where: {tokenId: ${tokenId[1]}}) {
-                                    tokenIPFSPath
-                                }
-                            }
-                        `
-                        })
-                    })
-                    .then((res) => res.json())
-                    .then(res => {
-                        console.log(res.data.nfts[0].tokenIPFSPath);
-                        const ipfsString = "" + res.data.nfts[0].tokenIPFSPath;
-                        setIPFSPath(res.data.nfts[0].tokenIPFSPath)
-                    }).catch(error => console.log(error));
+
+    const handleNftMetadata = () => {
+        const nftsIPFS = [];
+        const ipfsPath = 'https://gateway.pinata.cloud/';
+        for (var i = 0; i < nfts.length && i < 3; i++) {
+            const metadataPath = 'https://ipfs.foundation.app/ipfs/' + nfts[i].tokenIPFSPath;
+            fetch(metadataPath, {
+                method: 'GET', 
+                headers: {
+                    'Content-Type': 'application/json',
+                },})
+                .then((res) => res.json())
+                .then(res => {
+                    console.log(res);
+                    const ipfsHash = res.image.split('ipfs://');
+                    console.log(ipfsHash);
+                    const ipfsUrl = ipfsPath + ipfsHash[1];
+                    nftsIPFS.push(ipfsUrl);
+                }).catch(error => console.log(error));
         }
+        setNftMetadata(nftsIPFS);
+        console.log(nftMetadata);
     };
     
     // clean this up
@@ -75,29 +72,23 @@ const CreatorCard = ({ id, netRevenue, nfts}) => {
             setOpen(false);
         }else{
             setOpen(true);
-            //handleNftMetadata();
+            handleNftMetadata();
         }
     };
 
     return (
-        <div className='creator-card'>
-            <text>@{username}</text>
-            <img className='profile-picture' src={profilePicture}/>
-            <text>{netRevenue} ETH</text>
-            <text>NFTs Created {nfts.length}</text>
-            <button onClick={onClickHandler}>Drop down</button>
-            {open && (
-                <>
-                <text> hello</text>
-                <div className='nft-row'>
-                    <img className='nft-display' src="https://ipfs.io/ipfs/QmauUZUuQf4z9AT21jMGKKuvuRi1FDEA1ev3BevQETSp83/nft.png" />
-                    <img className='nft-display' src="https://ipfs.io/ipfs/QmauUZUuQf4z9AT21jMGKKuvuRi1FDEA1ev3BevQETSp83/nft.png" />
-                    <img className='nft-display' src="https://ipfs.io/ipfs/QmauUZUuQf4z9AT21jMGKKuvuRi1FDEA1ev3BevQETSp83/nft.png" />
+        <a href={`https://foundation.app/${username}`} target="_blank" text-decoration="none">
+            <div className='creator-card'>
+                <div className='profile-row'>
+                    <img className='profile-picture' src={profilePicture}/>
+                    <h2 className='username'>@{username}</h2>
                 </div>
-                <a className="button-find-more" href={`https://foundation.app/${username}`} target="_blank">View more on Foundation</a> 
-                </>
-            )}
-        </div>
+                <div className='profile-row'>
+                    <text className="text-details">Revenue {revenue} ETH</text>
+                    <text className="text-details">NFTs Created {nfts.length}</text>
+                </div>
+            </div>
+        </a>
     )
 }
 

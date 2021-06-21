@@ -16,11 +16,9 @@ function App() {
                 {
                   creators(orderBy:netSalesInETH, orderDirection:desc) {
                     id
-                    account {
-                      id
-                    }
                     nfts {
                       id
+                      tokenIPFSPath
                     }
                     netRevenueInETH
                   }
@@ -38,12 +36,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="div-handle">Foundation Creators</div>
-        <header>Top 100 Highest Selling Creators</header>
+        <h1>Foundation Creators</h1>
+        <p>Top Creators</p>
         <div className="div-creator-box">
-          {creators.map(creator => {
+          {creators.map((creator, index) => {
             return (
-              <CreatorCard id={creator.id} netRevenue={creator.netRevenueInETH} nfts={creator.nfts} />
+              <CreatorCard key={index} id={creator.id} netRevenue={creator.netRevenueInETH} nfts={creator.nfts} />
             )
           })}
         </div>
