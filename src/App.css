@@ -14,7 +14,12 @@
 }
 
 .App-header {
-  min-height: 100vh;
+  min-height: 10vh;
+  display: flex;
+  background-color: transparent;
+}
+
+.fnd-creators-list {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +27,7 @@
   font-size: calc(10px + 2vmin);
 }
 
-.div-handle{
+.div-handle {
   box-sizing: border-box;
   min-width: 0px;
   font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -34,13 +39,23 @@
   background-clip: text;
 }
 
-.div-creator-box{
+.div-creator-box {
   display: flex;
   flex-direction: column;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.fnd-creators{
+  border-radius: 25px;
+  border: none;
+  margin: 15px;
+  filter: drop-shadow(rgba(0, 0, 0, 0.25) 0px 20px 20px);
+  margin: 20px;
+  padding: 10px;
+  font-size: 20px;
 }
 
 @keyframes App-logo-spin {
@@ -50,8 +65,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-h1{
-  font-family: "ABC Marfa Trial Regular";
 }

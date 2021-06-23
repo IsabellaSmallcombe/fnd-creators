@@ -36,16 +36,22 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Foundation Creators</h1>
-        <p>Top Creators</p>
-        <div className="div-creator-box">
-          {creators.map((creator, index) => {
-            return (
-              <CreatorCard key={index} id={creator.id} netRevenue={creator.netRevenueInETH} nfts={creator.nfts} />
-            )
-          })}
+        <div>
+          <h1 className='fnd-creators'>Foundation Creators</h1>
         </div>
       </header>
+      <body>
+        <div className='fnd-creators-list'>
+            <p>Top Creators</p>
+            <div className="div-creator-box">
+              {creators.map((creator, index) => {
+                return (
+                  <CreatorCard key={index} id={creator.id} netRevenue={creator.netRevenueInETH} nfts={creator.nfts} />
+                )
+              })}
+          </div>
+        </div>
+      </body>
     </div>
   );
 }
