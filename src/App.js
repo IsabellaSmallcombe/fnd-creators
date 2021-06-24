@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Reward from 'react-rewards';
 import './App.css';
 import CreatorCard from './CreatorCard';
 
@@ -33,16 +34,20 @@ function App() {
     }).catch(error => console.log(error));
   }, []);
 
+  // this.reward.rewardMe();
+
   return (
     <div className="App">
       <header className="App-header">
         <div>
-          <h1 className='fnd-creators'>Foundation Creators</h1>
+          {/* <Reward ref={(ref) => { this.reward = ref }} type='emoji'> */}
+            <button className='fnd-creators'>Foundation Creators</button>
+          {/* </Reward> */}
         </div>
       </header>
       <body>
         <div className='fnd-creators-list'>
-            <p>Top Creators</p>
+            <p className="top-creators">Top Creators</p>
             <div className="div-creator-box">
               {creators.map((creator, index) => {
                 return (

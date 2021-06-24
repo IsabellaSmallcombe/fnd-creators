@@ -79,11 +79,11 @@ const CreatorCard = ({ id, netRevenue, nfts}) => {
     return (
         <a href={`https://foundation.app/${username}`} target="_blank" text-decoration="none">
             <div className='creator-card'>
-                <div className='profile-row'>
+                <div className='profile-row-user'>
                     <img className='profile-picture' src={profilePicture}/>
-                    <h2 className='username'>@{username}</h2>
+                    <text className='username'>@{username}</text>
                 </div>
-                <div className='profile-row'>
+                <div className='profile-row-revenue'>
                     <text className="text-details">Revenue {revenue} ETH</text>
                     <text className="text-details">NFTs Created {nfts.length}</text>
                 </div>
