@@ -3,8 +3,6 @@ import './CreatorCard.css';
 
 const CreatorCard = ({ id, netRevenue, nfts}) => {
 
-    const [open, setOpen] = useState(false);
-    const [nftMetadata, setNftMetadata] = useState([]);
     const [username, setUsername] = useState('');
     const [profilePicture, setProfilePicture] = useState('');
 
@@ -37,47 +35,8 @@ const CreatorCard = ({ id, netRevenue, nfts}) => {
         }).catch(error => console.log(error));
     });
 
-    // const nfts = '';
-    // example ID: "0xf74d1224931afa9cf12d06092c1eb1818d1e255c-24437"
-
-    // https://ipfs.foundation.app/ipfs/
-
-
-    const handleNftMetadata = () => {
-        const nftsIPFS = [];
-        const ipfsPath = 'https://gateway.pinata.cloud/';
-        for (var i = 0; i < nfts.length && i < 3; i++) {
-            const metadataPath = 'https://ipfs.foundation.app/ipfs/' + nfts[i].tokenIPFSPath;
-            fetch(metadataPath, {
-                method: 'GET', 
-                headers: {
-                    'Content-Type': 'application/json',
-                },})
-                .then((res) => res.json())
-                .then(res => {
-                    console.log(res);
-                    const ipfsHash = res.image.split('ipfs://');
-                    console.log(ipfsHash);
-                    const ipfsUrl = ipfsPath + ipfsHash[1];
-                    nftsIPFS.push(ipfsUrl);
-                }).catch(error => console.log(error));
-        }
-        setNftMetadata(nftsIPFS);
-        console.log(nftMetadata);
-    };
-    
-    // clean this up
-    const onClickHandler = () => {
-        if (open) {
-            setOpen(false);
-        }else{
-            setOpen(true);
-            handleNftMetadata();
-        }
-    };
-
     return (
-        <a href={`https://foundation.app/${username}`} target="_blank" text-decoration="none">
+        <a href={`https://foundation.app/${username}`} target="_blank" text-decoration="none" rel="noreferrer">
             <div className='creator-card'>
                 <div className='profile-row-user'>
                     <img className='profile-picture' src={profilePicture}/>
