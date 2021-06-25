@@ -76,6 +76,24 @@
     margin-top: 10px;
     border-width: 0.5px;
     font-size: 23px;
+    background: #1A1A1A;
+    color: white;
+}
+
+.fnd-link {
+    text-decoration: none;
+    color: white; 
+    display: inherit;
+}
+
+.nft-modal {
+    display: flex;
+    flex-direction: row;
+}
+
+.nft {
+    max-width: 300px;
+    height: auto;
 }
 
 #noneall a{

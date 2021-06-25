@@ -25,7 +25,7 @@ import BodyCreators from './BodyCreators';
             <Reward ref={(ref) => { this.reward = ref }} type='emoji' config={{
             springAnimation: true,
             elementCount: 40,
-            emoji: ['🌐', '👩‍🎨', '🎨', '🖼'],
+            emoji: ['🌐', '👩‍🎨', '🎨', '🖼', ''],
             angle: -90,
             spread: 150,
             startVelocity: 40,
@@ -38,6 +38,12 @@ import BodyCreators from './BodyCreators';
         <body>
           <BodyCreators />
         </body>
+        <footer>
+          <text>* Revenue is the total amount of money earned by the creator after Foundation's hosting percentage</text>
+          <a href={'https://twitter.com/iismallcombe'} target="_blank" text-decoration="none" rel="noreferrer">
+            <text>Made by @iismallcombe</text>
+          </a>
+        </footer>
       </div>
     );
   }
