@@ -15,7 +15,7 @@
 }
 
 .nft-display{
-    max-width: 100px;
+    max-width: 50px;
     margin: 10px;
 }
 
@@ -86,7 +86,7 @@
     display: inherit;
 }
 
-.nft-modal {
+.nft-flex {
     display: flex;
     flex-direction: row;
 }
